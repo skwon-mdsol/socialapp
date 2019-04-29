@@ -26,10 +26,17 @@ const schema = new GraphQLSchema({
   query: RootQueryType
 });
 
+
+app.set('view engine', 'pug')
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
   graphiql: true,
 }));
+
+app.get('/', function (req, res) {
+  res.render('index');
+});
+
 app.listen(4000);
 console.log('Running a GraphQL API server at localhost:4000/graphql');
